@@ -37,7 +37,8 @@
   grid-column-end: 10;
 }
 
-.product {
+/* I'm not sure why width:auto and height: 100% isn't sizing the image appropriately */
+.product { 
   width: 100%;
   height: auto;
 }
