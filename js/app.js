@@ -1,9 +1,21 @@
 'use strict';
+// ------
+// 
+// Global variables
+// 
+// ------
 
 var container = document.getElementById('container');
-
 var PRODUCTS = {};
-var totalVotes = 0;
+var totalVotesOnPage = 0;
+var previousProducts = [];
+var currentProducts = [];
+
+// ------
+// 
+// Constructor function
+// 
+// ------
 
 function Product(name, HTMLid, imgFilePath){
   this.name = name;
@@ -18,6 +30,8 @@ Product.prototype.getPercentClicked = function (){
   return this.totalVotes / this.totalViews;
 };
 
+// Render to the DOM
+
 Product.prototype.render = function(parentId){
   var parent = document.getElementById(parent);
 
@@ -28,36 +42,42 @@ Product.prototype.render = function(parentId){
 
   parent.appendChild(img);
 
+};
+
+function randomImageSelector(){
+  // ToDo : Randomly select 3 new images
+    
+}
+
+function addCurrentSetOfImages(event){
+  // event.trigger.id = '';
+  // event.trigger.src = '';
 
 }
 
-
-// render on to the page
-
+function displayResults(){
 
 
+}
 
-
-
-
-
-
-
-
+// Event Handler
 
 function handleClick(event) {
   if(event.target.className === 'product'){
+    totalVotesOnPage++;
     PRODUCTS[event.target.id].totalVotes++;
-    
-    // totalVotes++;
-    if(totalVotes === 25){
-      totalVotes = 0;
+
+    if(totalVotesOnPage === 25){
+      // ToDo: remove eventListener from container  
+      // ToDo: If stop listening, display results
+      displayResults();
+      return;
     }
+
+    randomImageSelector();
+    addCurrentSetOfImages(event);
   }
-  console.log('totalVotes');
+
 }
 
 container.addEventListener('click', handleClick);
-
-
-
