@@ -32,7 +32,7 @@ var productArray = [
   ['Unicorn', 'unicorn', './img/unicorn.jpg'],
   ['Usb', 'usb', './img/usb.jpg'],
   ['Water-can', 'water-can', './img/water-can.jpg'],
-  ['Wine-glass', 'wine-glass', './img/wine-glass.jpg'],
+  ['Wine-glass', 'wine-glass', './img/wine-glass.jpg']
 
 ];
 
@@ -49,6 +49,7 @@ function Product(name, HTMLid, imgFilePath){
   this.totalVotes = this.totalViews = 0;
 
   PRODUCTS[this.HTMLid] = this;
+  
 }
 
 Product.prototype.getPercentClicked = function (){
@@ -69,6 +70,13 @@ Product.prototype.render = function(parentId){
 
 };
 
+function createObjects(){
+  for( var i =0 ; i< productArray.length; i++){
+    var product = new Product (productArray[i][1], productArray[i][2], productArray[i][2]);
+  }
+}
+createObjects();
+
 function randomImageSelector(){
   // ToDo : Randomly select 3 new images
   // need conditional statements
@@ -83,8 +91,12 @@ function addCurrentSetOfImages(event){
 }
 
 function displayResults(){
+console.log('5 votes');
 
+}
 
+function removeListener(){
+  container.removeEventListener('click', handleClick);
 }
 
 // Event Handler
@@ -92,11 +104,13 @@ function displayResults(){
 function handleClick(event) {
   if(event.target.className === 'product'){
     totalVotesOnPage++;
-    PRODUCTS[event.target.id].totalVotes++;
-
+    // PRODUCTS[event.target.id].totalVotes++;
+    // console.log(event.target.id);
+    // console.log(PRODUCTS[event.target.id]);
+    // console.log(PRODUCTS);
+    console.log(totalVotesOnPage);
     if(totalVotesOnPage === 25){
-      // ToDo: remove eventListener from container  
-      // ToDo: If stop listening
+      removeListener();
       displayResults();
       return;
     }
