@@ -11,6 +11,31 @@ var totalVotesOnPage = 0;
 var previousProducts = [];
 var currentProducts = [];
 
+
+var productArray = [
+  ['Bag', 'bag', './img/bag.jpg'],
+  ['Banana', 'banana', './img/banana.jpg'],
+  ['Bathroom', 'bathroom', './img/bathroom.jpg'],
+  ['Boots', 'boots', './img/boots.jpg'],
+  ['Breakfast', 'breakfast', './img/breakfast.jpg'],
+  ['Bubblegum', 'bubblegum', './img/bubblegum.jpg'],
+  ['Chair', 'chair', './img/chair.jpg'],
+  ['Cthulhu', 'cthulhu', './img/cthulhu.jpg'],
+  ['Dog-duck', 'dog-duck', './img/dog-duck.jpg'],
+  ['Dragon', 'dragon', './img/dragon.jpg'],
+  ['Pen', 'pen', './img/pen.jpg'],
+  ['Pet-sweep', 'pet-sweep', './img/pet-sweep.jpg'],
+  ['Scissors', 'scissors', './img/scissors.jpg'],
+  ['Shark', 'shark', './img/shark.jpg'],
+  ['Sweep', 'sweep', './img/sweep.jpg'],
+  ['Tauntaun', 'tauntaun', './img/tauntaun.jpg'],
+  ['Unicorn', 'unicorn', './img/unicorn.jpg'],
+  ['Usb', 'usb', './img/usb.jpg'],
+  ['Water-can', 'water-can', './img/water-can.jpg'],
+  ['Wine-glass', 'wine-glass', './img/wine-glass.jpg'],
+
+];
+
 // ------
 // 
 // Constructor function
@@ -46,6 +71,8 @@ Product.prototype.render = function(parentId){
 
 function randomImageSelector(){
   // ToDo : Randomly select 3 new images
+  // need conditional statements
+  // probably use while loop
     
 }
 
@@ -69,7 +96,7 @@ function handleClick(event) {
 
     if(totalVotesOnPage === 25){
       // ToDo: remove eventListener from container  
-      // ToDo: If stop listening, display results
+      // ToDo: If stop listening
       displayResults();
       return;
     }
