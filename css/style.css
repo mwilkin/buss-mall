@@ -1,7 +1,7 @@
 #container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 100px, 250pxs;
+  grid-template-rows: 100px, 250px;
   grid-gap: 10px;
   margin: 15px;
 }
@@ -37,15 +37,15 @@
   grid-column-end: 10;
 }
 
+/* I'm not sure why width:auto and height: 100% isn't sizing the image appropriately */
 .product { 
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 150px;
 }
 
-/* I'm not sure why width:auto and height: 100% isn't sizing the image appropriately */
 /* .product { 
-  width: auto;
-  height: 100%;
+  width: 100%;
+  height: auto;
 } */
 
 .product-cell {
