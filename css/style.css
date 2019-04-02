@@ -37,11 +37,16 @@
   grid-column-end: 10;
 }
 
-/* I'm not sure why width:auto and height: 100% isn't sizing the image appropriately */
 .product { 
   width: 100%;
   height: auto;
 }
+
+/* I'm not sure why width:auto and height: 100% isn't sizing the image appropriately */
+/* .product { 
+  width: auto;
+  height: 100%;
+} */
 
 .product-cell {
   background-color: lightslategrey;
