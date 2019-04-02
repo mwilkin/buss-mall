@@ -1,15 +1,14 @@
 #container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 100px, 250px;
+  grid-template-rows: 100px, 250pxs;
   grid-gap: 10px;
   margin: 15px;
 }
 
-.gridCell {
+.grid-cell {
   background-color: lightslategrey;
   outline: 3px black solid;
-  text-align: center;
 }
 
 #header {
@@ -33,25 +32,24 @@
   grid-column-end: last;
 }
 
-#resultList {
+#resultListCell {
   grid-column-start: 4;
   grid-column-end: 10;
 }
 
 .product {
-  width: auto;
-  height: 100%;
+  width: 100%;
+  height: auto;
 }
 
-.productCell {
+.product-cell {
   background-color: lightslategrey;
   outline: 3px black solid;
   text-align: center;
 }
 
 #orderedResultList {
-  margin-left: 25px;
+  margin-left: 35px;
   list-style-type: decimal;
   text-align: left;
-
 }
