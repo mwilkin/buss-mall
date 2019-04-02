@@ -3,7 +3,10 @@
 var container = document.getElementById('container');
 
 function handleClick(event) {
-  console.log('hi');
+  console.log(event.target.id);
 }
 
 container.addEventListener('click', handleClick);
+
+
+// 
