@@ -47,14 +47,17 @@ function Product(name, HTMLid, imgFilePath){
   this.imgFilePath = imgFilePath;
   this.HTMLid = HTMLid;
   this.totalVotes = this.totalViews = 0;
-
-  PRODUCTS[this.HTMLid] = this;
   
+  PRODUCTS[this.HTMLid] = this;
 }
 
 Product.prototype.getPercentClicked = function (){
   return this.totalVotes / this.totalViews;
 };
+
+for(var i = 0; i < productArray.length; i++){
+  new Product(productArray[i][0], productArray[i][1], productArray[i][2]);
+}
 
 // Render to the DOM
 
@@ -72,7 +75,7 @@ Product.prototype.render = function(parentId){
 
 function randomImageSelector(min, max){
   // ToDo : Randomly select 3 new images
-  
+
     
 }
 
@@ -97,8 +100,7 @@ function removeListener(){
 function handleClick(event) {
   if(event.target.className === 'product'){
     totalVotesOnPage++;
-    // PRODUCTS[event.target.id].totalVotes++;
-
+    PRODUCTS[event.target.id].totalVotes++;
 
     if(totalVotesOnPage === 25){
       removeListener();
