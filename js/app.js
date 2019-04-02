@@ -70,23 +70,16 @@ Product.prototype.render = function(parentId){
 
 };
 
-function createObjects(){
-  for( var i =0 ; i< productArray.length; i++){
-    var product = new Product (productArray[i][1], productArray[i][2], productArray[i][2]);
-  }
-}
-createObjects();
-
-function randomImageSelector(){
+function randomImageSelector(min, max){
   // ToDo : Randomly select 3 new images
-  // need conditional statements
-  // probably use while loop
+  
     
 }
 
-function addCurrentSetOfImages(event){
-  // event.trigger.id = '';
-  // event.trigger.src = '';
+function addCurrentSetOfImages(event){  // need to add currently displayed images to an array s
+  // event.trigger.id = 'this.HTMLid';
+  // event.trigger.src = 'this.imgFilePath';
+  // event.trigger.name = 'this.name';
 
 }
 
@@ -105,16 +98,13 @@ function handleClick(event) {
   if(event.target.className === 'product'){
     totalVotesOnPage++;
     // PRODUCTS[event.target.id].totalVotes++;
-    // console.log(event.target.id);
-    // console.log(PRODUCTS[event.target.id]);
-    // console.log(PRODUCTS);
-    console.log(totalVotesOnPage);
+
+
     if(totalVotesOnPage === 25){
       removeListener();
       displayResults();
       return;
     }
-
     randomImageSelector();
     addCurrentSetOfImages(event);
   }
