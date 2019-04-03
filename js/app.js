@@ -62,7 +62,7 @@ for(var i = 0; i < productArray.length; i++){
 // Render to the DOM
 
 Product.prototype.render = function(parentId){
-  var parent = document.getElementById(parent);
+  var parent = document.getElementById(parentId);
 
   var img = document.createElement('img');
   img.setAttribute('id', this.HTMLid);
@@ -73,22 +73,52 @@ Product.prototype.render = function(parentId){
 
 };
 
-function randomImageSelector(min, max){
-  // ToDo : Randomly select 3 new images
 
-    
-}
 
-function addCurrentSetOfImages(event){  // need to add currently displayed images to an array s
+// function randomGenerator(min, max){
+// ToDo : Randomly select 3 new images
+// keep track of total views for each product
+
+//   return Math.floor(Math.random((max-min)+min)); // something like this
+// console.log()
+// }
+
+// for (i = 0; i < 3; i++) {
+//   var randomIndex = randomGenerator(0, 24);
+//   while(previousProducts.includes(randomIndex)){
+//     randomIndex = randomGenerator(0, 24);
+//   }
+//   previousProducts.push(randomIndex);
+// }
+// while((i = previousProducts.shift()) !== 3) {
+//  console.log(previousProducts);
+// }
+
+
+function addCurrentSetOfImages(event){  // need to add currently displayed images to an array
   // event.trigger.id = 'this.HTMLid';
   // event.trigger.src = 'this.imgFilePath';
-  // event.trigger.name = 'this.name';
 
 }
 
+// Displaying to the DOM
 function displayResults(){
-console.log('5 votes');
+  var resultListCellElement = document.getElementById('resultListCell');
+  var h3 = document.createElement(h3);
+  h3.textContent = 'Most Voted Products (High to Low)';
+  resultListCellElement.appendChild(h3);
 
+  var ol = document.createElement('ol');
+  ol.setAttribute('id', 'orderedResultList');
+  resultListCellElement.appendChild(ol);
+
+  for(var i = 0; i < productArray.length; i++){
+    var li = document.createElement('li');
+    li.textContent = PRODUCTS[i].totalVotes;
+    ol.appendChile(li);
+  }
+
+  console.log('5 votes');
 }
 
 function removeListener(){
@@ -101,13 +131,14 @@ function handleClick(event) {
   if(event.target.className === 'product'){
     totalVotesOnPage++;
     PRODUCTS[event.target.id].totalVotes++;
+    console.log(totalVotesOnPage);
 
     if(totalVotesOnPage === 25){
       removeListener();
       displayResults();
       return;
     }
-    randomImageSelector();
+    // randomGenerator();
     addCurrentSetOfImages(event);
   }
 
