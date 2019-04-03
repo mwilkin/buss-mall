@@ -62,6 +62,7 @@ for(var i = 0; i < productArray.length; i++){
 // Render to the DOM
 
 Product.prototype.render = function(parentId){
+  
   var parent = document.getElementById(parentId);
 
   var img = document.createElement('img');
@@ -70,16 +71,13 @@ Product.prototype.render = function(parentId){
   img.setAttribute('class', 'product');
 
   parent.appendChild(img);
-
 };
 
-
-
-// function randomGenerator(min, max){
+function randomGenerator(min, max){
 // ToDo : Randomly select 3 new images
 // keep track of total views for each product
 
-//   return Math.floor(Math.random((max-min)+min)); // something like this
+// return Math.floor(Math.random((24-0)+0)); // something like this
 // console.log()
 // }
 
@@ -92,13 +90,13 @@ Product.prototype.render = function(parentId){
 // }
 // while((i = previousProducts.shift()) !== 3) {
 //  console.log(previousProducts);
-// }
+}
 
 
-function addCurrentSetOfImages(event){  // need to add currently displayed images to an array
-  // event.trigger.id = 'this.HTMLid';
-  // event.trigger.src = 'this.imgFilePath';
-
+function addCurrentSetOfImages(event){  
+  event.trigger.id = 'this.HTMLid';
+  event.trigger.src = 'this.imgFilePath';
+  console.log('event.trigger.id');
 }
 
 // Displaying to the DOM
@@ -115,10 +113,8 @@ function displayResults(){
   for(var i = 0; i < productArray.length; i++){
     var li = document.createElement('li');
     li.textContent = PRODUCTS[i];
-    
     ol.appendChild(li);
   }
-
 }
 
 function removeListener(){
@@ -131,17 +127,23 @@ function handleClick(event) {
   if(event.target.className === 'product'){
     totalVotesOnPage++;
     PRODUCTS[event.target.id].totalVotes++;
-    console.log(totalVotesOnPage);
 
     if(totalVotesOnPage === 25){
       removeListener();
       displayResults();
       return;
     }
-    // randomGenerator();
+    randomGenerator();
     addCurrentSetOfImages(event);
   }
-
 }
 
 container.addEventListener('click', handleClick);
+
+
+var boots = new Product('Boots', 'boots', './img/boots.jpg');
+boots.render('item_1');
+var bag = new Product('Bag', 'bag', './img/bag.jpg');
+bag.render('item_2');
+var breakfast = new Product('Breakfast', 'breakfast', './img/breakfast.jpg');
+breakfast.render('item_3');
