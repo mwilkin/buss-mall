@@ -84,9 +84,9 @@ Product.prototype.render = function(parentId){
 // }
 
 // for (i = 0; i < 3; i++) {
-//   var randomIndex = randomGenerator(0, 24);
+//   var randomIndex = randomGenerator(0, productArray.length);
 //   while(previousProducts.includes(randomIndex)){
-//     randomIndex = randomGenerator(0, 24);
+//     randomIndex = randomGenerator(0, productArray.length);
 //   }
 //   previousProducts.push(randomIndex);
 // }
@@ -114,11 +114,11 @@ function displayResults(){
 
   for(var i = 0; i < productArray.length; i++){
     var li = document.createElement('li');
-    li.textContent = PRODUCTS[i].totalVotes;
-    ol.appendChile(li);
+    li.textContent = PRODUCTS[i];
+    
+    ol.appendChild(li);
   }
 
-  console.log('5 votes');
 }
 
 function removeListener(){
