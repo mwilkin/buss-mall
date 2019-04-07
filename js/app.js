@@ -12,7 +12,7 @@ var totalVotesOnPage = 0;
 var previousIndexProducts = [];
 var currentProducts = [];
 var MINIMUM_NUMBER = 0;
-var MAXIMUM_NUMBER = 20;
+var MAXIMUM_NUMBER = 6;  //Change back to 20 when it is all working
 
 var productArray = [
   ['Bag', 'bag', './img/bag.jpg'],
@@ -145,11 +145,7 @@ function displayResults(){
 
   for(var i = 0; i < productArray.length; i++){
     var li = document.createElement('li');
-
-    // Need to grab the total votes for each project
-    // they are undefined at this point
-
-    li.textContent = PRODUCTS[productArray[i][1]].totalVotes + 'votes for ' + PRODUCTS[productArray[i][1]].name;
+    li.textContent = PRODUCTS[productArray[i][1]].totalVotes + ' votes for ' + PRODUCTS[productArray[i][1]].name;
     ol.appendChild(li);
   }
 }
@@ -173,7 +169,6 @@ function handleClick(event) {
     if(totalVotesOnPage === MAXIMUM_NUMBER){
       removeListener();
       displayResults();
-      // call function to display bar chart at this point
       chartRender();
       return;
     }
@@ -203,19 +198,19 @@ function chartRender(){
       label: 'Number of votes',
       data: [3, 10, 6, 8, 5],
       backgroundColor:[
-        'rgb(255, 0, 0)',
-        'rbg(255, 255, 0)',
-        'rgb(0, 255, 255)',
-        'rgb(0, 0, 255)',
-        'rgb(255, 0, 127)',
+        'rgba(255, 99, 132, .6)',
+        'rgba(54, 162, 235, .6)',
+        'rgba(255, 205, 86, .6)',
+        'rgba(75, 192, 192, .6)',
+        'rgba(255, 159, 64, .6)',
 
       ],
       borderColor: [
-        'rgb(0, 0, 0)',
-        'rbg(0, 0, 0)',
-        'rgb(0, 0, 0)',
-        'rgb(0, 0, 0)',
-        'rgb(0, 0, 0)',
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(255, 159, 64)',
       ],
       borderWidth: 1,
     }],
@@ -231,8 +226,15 @@ function chartRender(){
       },
       legend: {
         display: false,
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
       }
-    },
+    }
   };
 
   var barChart = new Chart(ctx, barChartConfig);
