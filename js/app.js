@@ -12,7 +12,7 @@ var totalVotesOnPage = 0;
 var previousIndexProducts = [];
 var currentProducts = [];
 var MINIMUM_NUMBER = 0;
-var MAXIMUM_NUMBER = 5;
+var MAXIMUM_NUMBER = 20;
 
 var productArray = [
   ['Bag', 'bag', './img/bag.jpg'],
@@ -87,21 +87,29 @@ function randomNumberGenerator(){
 
 function randomImageGenerator(){
 
-// add globally scoped variables for the numbers
-
   for (i = 0; i < 3; i++) {
-    var randomIndex = randomNumberGenerator(0, productArray.length);
-    console.log(productArray.length);
+    var randomIndex = randomNumberGenerator(MINIMUM_NUMBER, productArray.length);
+
+    // add some logic to check current images vs previous
+
     while(previousIndexProducts.includes(randomIndex)){
-      randomIndex = randomNumberGenerator(0, productArray.length);
+      randomIndex = randomNumberGenerator(MINIMUM_NUMBER, productArray.length);
     }
     previousIndexProducts.push(randomIndex);
+  }
+  if(previousIndexProducts.length === 6){
+    previousIndexProducts.shift();
+    previousIndexProducts.shift();
+    previousIndexProducts.shift();
+
     console.log(previousIndexProducts);
   }
-  // while((i = previousIndexProducts.shift()) !== 3) {
-  //   console.log(previousIndexProducts);
-  // }
+
 }
+
+// for(i = 0; i < previousIndexProducts; i++){
+//   PRODUCTS[productArray[previousIndexProducts[i]][1].render(`item_${i+1}`)];
+// }
 
 function addCurrentSetOfImages(event){  
   // add them to an array?
@@ -112,6 +120,11 @@ function addCurrentSetOfImages(event){
   // console.log('event.trigger.id');
 
 }
+
+function addProducts() {
+  // Do something
+}
+
 
 // ------------------------
 // 
@@ -159,6 +172,7 @@ function handleClick(event) {
     if(totalVotesOnPage === MAXIMUM_NUMBER){
       removeListener();
       displayResults();
+      // call function to display bar chart at this point
       return;
     }
     randomImageGenerator();
