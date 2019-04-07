@@ -74,6 +74,7 @@ Product.prototype.render = function(parentId){
   img.setAttribute('id', this.HTMLid);
   img.setAttribute('src', this.imgFilePath);
   img.setAttribute('class', 'product');
+  img.setAttribute('name', this.name);
 
   parent.appendChild(img);
 };
@@ -120,9 +121,28 @@ function addCurrentSetOfImages(){
   // event.trigger.src = this.imgFilePath;
 }
 
-function addProducts() {
-  // Do something
-  //Do I need this?
+// Remove images from the DOM 
+function removeImages() {
+  var parent = document.getElementById('item_1');
+  while(parent.firstChild){
+    parent.removeChild(parent.firstChild);
+  }
+  parent = document.getElementById('item_2');
+  while(parent.firstChild){
+    parent.removeChild(parent.firstChild);
+  }
+  parent = document.getElementById('item_3');
+  while(parent.firstChild){
+    parent.removeChild(parent.firstChild);
+  }
+
+
+  // for(var i=0; i<3 ;i++){
+  //   var parentElement = document.getElementsByClassName('product-cell');
+  //   console.log(parentElement);
+  //   parentElement.removeChild(parent.firstChild);
+  // }
+
 }
 
 
@@ -173,7 +193,9 @@ function handleClick(event) {
       chartRender();
       return;
     }
+
     randomImageGenerator();
+    removeImages();
     addCurrentSetOfImages();
   }
 }
