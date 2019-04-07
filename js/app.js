@@ -6,9 +6,10 @@
 // ------
 
 var container = document.getElementById('container');
+
 var PRODUCTS = {};
 var totalVotesOnPage = 0;
-var previousProducts = [];
+var previousIndexProducts = [];
 var currentProducts = [];
 var MINIMUM_NUMBER = 0;
 var MAXIMUM_NUMBER = 5;
@@ -77,31 +78,34 @@ Product.prototype.render = function(parentId){
   parent.appendChild(img);
 };
 
-function randomGenerator(productArray){
-// ToDo : Randomly select 3 new images
-// keep track of total views for each product
+function randomNumberGenerator(){
 
-  var randomNumber = Math.floor(Math.random() * 20);
+// add global variables for make less brittle
 
-  console.log(productArray);
-  // console.log(productArray.length);
-  console.log(randomNumber);
+  return Math.floor(Math.random() * 20);
 }
 
-// for (i = 0; i < 3; i++) {
-//   var randomIndex = randomGenerator(0, productArray.length);
-//   while(previousProducts.includes(randomIndex)){
-//     randomIndex = randomGenerator(0, productArray.length);
-//   }
-//   previousProducts.push(randomIndex);
-// }
-// while((i = previousProducts.shift()) !== 3) {
-//  console.log(previousProducts);
-// }
+function randomImageGenerator(){
 
+// add globally scoped variables for the numbers
+
+  for (i = 0; i < 3; i++) {
+    var randomIndex = randomNumberGenerator(0, productArray.length);
+    console.log(productArray.length);
+    while(previousIndexProducts.includes(randomIndex)){
+      randomIndex = randomNumberGenerator(0, productArray.length);
+    }
+    previousIndexProducts.push(randomIndex);
+    console.log(previousIndexProducts);
+  }
+  // while((i = previousIndexProducts.shift()) !== 3) {
+  //   console.log(previousIndexProducts);
+  // }
+}
 
 function addCurrentSetOfImages(event){  
   // add them to an array?
+  // keep track of total views for each product
 
   // event.trigger.id = this.HTMLid;
   // event.trigger.src = this.imgFilePath;
@@ -157,21 +161,12 @@ function handleClick(event) {
       displayResults();
       return;
     }
-    randomGenerator();
+    randomImageGenerator();
     addCurrentSetOfImages(event);
   }
 }
 
 container.addEventListener('click', handleClick);
-
-// Test Display Data 
-
-var boots = new Product('Boots', 'boots', './img/boots.jpg');
-boots.render('item_1');
-var bag = new Product('Bag', 'bag', './img/bag.jpg');
-bag.render('item_2');
-var breakfast = new Product('Breakfast', 'breakfast', './img/breakfast.jpg');
-breakfast.render('item_3');
 
 // -------------------------
 // 
@@ -184,4 +179,15 @@ breakfast.render('item_3');
 // function chartRender(){
 //      Shows the bar chart on the page
 // }
+
+
+// Test Display Data 
+// Delete as soon as random images generator is working
+
+var boots = new Product('Boots', 'boots', './img/boots.jpg');
+boots.render('item_1');
+var bag = new Product('Bag', 'bag', './img/bag.jpg');
+bag.render('item_2');
+var breakfast = new Product('Breakfast', 'breakfast', './img/breakfast.jpg');
+breakfast.render('item_3');
 
