@@ -29,10 +29,10 @@ var productArray = [
   ['Pet-sweep', 'pet-sweep', './img/pet-sweep.jpg'],
   ['Scissors', 'scissors', './img/scissors.jpg'],
   ['Shark', 'shark', './img/shark.jpg'],
-  ['Sweep', 'sweep', './img/sweep.jpg'],
+  ['Sweep', 'sweep', './img/sweep.png'],
   ['Tauntaun', 'tauntaun', './img/tauntaun.jpg'],
   ['Unicorn', 'unicorn', './img/unicorn.jpg'],
-  ['Usb', 'usb', './img/usb.jpg'],
+  ['Usb', 'usb', './img/usb.gif'],
   ['Water-can', 'water-can', './img/water-can.jpg'],
   ['Wine-glass', 'wine-glass', './img/wine-glass.jpg']
 ];
