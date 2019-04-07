@@ -127,9 +127,9 @@ function addProducts() {
 
 
 // ------------------------
-// 
+//
 // Displaying to the DOM
-// 
+//
 // -------------------------
 
 // ToDo: Order the list from most votes to least
@@ -137,7 +137,7 @@ function addProducts() {
 function displayResults(){
   var resultListCellElement = document.getElementById('resultListCell');
   var h3 = document.createElement(h3);
-  h3.textContent = 'Most Voted Products (High to Low)';
+  h3.textContent = 'Most Voted';
   resultListCellElement.appendChild(h3);
 
   var ol = document.createElement('ol');
