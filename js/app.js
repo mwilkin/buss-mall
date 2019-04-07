@@ -91,6 +91,7 @@ function randomImageGenerator(){
     var randomIndex = randomNumberGenerator(MINIMUM_NUMBER, productArray.length);
 
     // add some logic to check current images vs previous
+    // currentProducts =
 
     while(previousIndexProducts.includes(randomIndex)){
       randomIndex = randomNumberGenerator(MINIMUM_NUMBER, productArray.length);
@@ -173,6 +174,7 @@ function handleClick(event) {
       removeListener();
       displayResults();
       // call function to display bar chart at this point
+      // chartRender();
       return;
     }
     randomImageGenerator();
@@ -188,12 +190,48 @@ container.addEventListener('click', handleClick);
 // 
 // --------------------------
 
-// var  resultsBarChart = document.getElementById('barChart');
+var  resultsBarChart = document.getElementById('barChart');
 
-// function chartRender(){
-//      Shows the bar chart on the page
-// }
+function chartRender(){
+  var canvas = document.getElementById('voteResultsBarChart');
+  var ctx = canvas.getContext('2d');
 
+  var data = {
+    labels: ['Cthulhu', 'Dragon', 'Water-can', 'Wine-glass', 'Bubblegum'],
+    datasets: [{
+      
+      label: 'Number of votes',
+      data: [3, 10, 6, 8, 5],
+      backgroundColor:[
+        'rgb(255, 0, 0)',
+        'rbg(255, 255, 0)',
+        'rgb(0, 255, 255)',
+        'rgb(0, 0, 255)',
+        'rgb(255, 0, 127)',
+
+      ],
+      borderColor: [
+        'rgb(0, 0, 0)',
+        'rbg(0, 0, 0)',
+        'rgb(0, 0, 0)',
+        'rgb(0, 0, 0)',
+        'rgb(0, 0, 0)',
+      ],
+      borderWidth: 1,
+
+    }],
+  };
+
+  var barChartConfig = {
+    type: 'bar',
+    data: data,
+  };
+
+  var barChart = new Chart(ctx, barChartConfig);
+
+}
+
+chartRender();
 
 // Test Display Data 
 // Delete as soon as random images generator is working
