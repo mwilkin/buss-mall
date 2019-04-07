@@ -149,7 +149,7 @@ function displayResults(){
     // Need to grab the total votes for each project
     // they are undefined at this point
 
-    li.textContent = 'votes for ' + PRODUCTS[productArray[i][1]].name;
+    li.textContent = PRODUCTS[productArray[i][1]].totalVotes + 'votes for ' + PRODUCTS[productArray[i][1]].name;
     ol.appendChild(li);
   }
 }
@@ -174,7 +174,7 @@ function handleClick(event) {
       removeListener();
       displayResults();
       // call function to display bar chart at this point
-      // chartRender();
+      chartRender();
       return;
     }
     randomImageGenerator();
@@ -224,57 +224,48 @@ function chartRender(){
   var barChartConfig = {
     type: 'bar',
     data: data,
+    options: {
+      title: {
+        display: true,
+        text: 'Voting ResultsData'
+      },
+      legend: {
+        display: false,
+      }
+    },
   };
 
   var barChart = new Chart(ctx, barChartConfig);
 
 }
 
-chartRender();
+// chartRender();
 
 // -------------
-// 
+//
 // Add Local Storage Functionality Here`
-// 
+//
 // ---------------
 
 // Add info to Local Storage
 // function addToStorage(){
 // something like this
+// var name = JSON.stringify('something here');
 // var productName = localStorage.setItem('name');
 
 // }
 
 // Get info from Local Storage
 // function getFromStorage(){
-//   var productName = localStorage.getItem('name');
+//  var productName = localStorage.getItem('name');
+//  var somethingHere = JSON.parse('productName');
 // }
 
 
 // Reset Local Storage
-// need to reset the storage so that upon first visit the web application, the state will be set to null.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// need to reset the storage so that upon 
+// first visit the web application, the state will be set to null.
+// RESET_GLOBAL_OBJECT
 
 
 
