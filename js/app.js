@@ -232,6 +232,52 @@ function chartRender(){
 
 chartRender();
 
+// -------------
+// 
+// Add Local Storage Functionality Here`
+// 
+// ---------------
+
+// Add info to Local Storage
+// function addToStorage(){
+// something like this
+// var productName = localStorage.setItem('name');
+
+// }
+
+// Get info from Local Storage
+// function getFromStorage(){
+//   var productName = localStorage.getItem('name');
+// }
+
+
+// Reset Local Storage
+// need to reset the storage so that upon first visit the web application, the state will be set to null.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Test Display Data 
 // Delete as soon as random images generator is working
 
