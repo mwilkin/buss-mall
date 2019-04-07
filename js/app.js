@@ -10,7 +10,7 @@ var container = document.getElementById('container');
 var PRODUCTS = {};
 var totalVotesOnPage = 0;
 var previousIndexProducts = [];
-var currentProducts = [];
+// var currentProducts = [];
 var MINIMUM_NUMBER = 0;
 var MAXIMUM_NUMBER = 6;  //Change back to 20 when it is all working
 
@@ -86,13 +86,13 @@ function randomNumberGenerator(){
 }
 
 function randomImageGenerator(){
-  currentProducts =[];
+  var currentProducts =[];
 
   for (i = 0; i < 3; i++) {
     var randomIndex = randomNumberGenerator(MINIMUM_NUMBER, productArray.length);
     while(currentProducts.includes(randomIndex)){
       randomIndex = randomNumberGenerator(MINIMUM_NUMBER, productArray.length);
-      console.log('random Index', randomIndex);
+      // console.log('random Index', randomIndex);
     }
     currentProducts.push(randomIndex);
     // console.log(currentProducts);
@@ -110,18 +110,19 @@ function randomImageGenerator(){
 }
 
 function addCurrentSetOfImages(){ 
-  for(i = 0; i < currentProducts.length; i++){
-    PRODUCTS[productArray[currentProducts[i]][1]].render(`item_${i+1}`);
+  console.log(previousIndexProducts);
+  for(i = 0; i < previousIndexProducts.length; i++){
+    PRODUCTS[productArray[previousIndexProducts[i]][1]].render(`item_${i+1}`);
+    // debugger;
   }
 
   // event.trigger.id = this.HTMLid;
   // event.trigger.src = this.imgFilePath;
-  // console.log('event.trigger.id');
-
 }
 
 function addProducts() {
   // Do something
+  //Do I need this?
 }
 
 
@@ -130,6 +131,8 @@ function addProducts() {
 // Displaying to the DOM
 // 
 // -------------------------
+
+// ToDo: Order the list from most votes to least
 
 function displayResults(){
   var resultListCellElement = document.getElementById('resultListCell');
