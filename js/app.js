@@ -123,21 +123,25 @@ function addCurrentSetOfImages(){
 
 // Remove images from the DOM 
 function removeImages() {
-  var parent = document.getElementById('item_1');
-  while(parent.firstChild){
-    parent.removeChild(parent.firstChild);
-  }
-  parent = document.getElementById('item_2');
-  while(parent.firstChild){
-    parent.removeChild(parent.firstChild);
-  }
-  parent = document.getElementById('item_3');
-  while(parent.firstChild){
-    parent.removeChild(parent.firstChild);
+  for(var i=0; i<3 ;i++){
+    var parent = document.getElementById(`item_${i+1}`);
+    while(parent.firstChild){
+      parent.removeChild(parent.firstChild);
+    }
   }
 
-
-  // for(var i=0; i<3 ;i++){
+  // var parent = document.getElementById('item_1');
+  // while(parent.firstChild){
+  //   parent.removeChild(parent.firstChild);
+  // }
+  // parent = document.getElementById('item_2');
+  // while(parent.firstChild){
+  //   parent.removeChild(parent.firstChild);
+  // }
+  // parent = document.getElementById('item_3');
+  // while(parent.firstChild){
+  //   parent.removeChild(parent.firstChild);
+  // }
   //   var parentElement = document.getElementsByClassName('product-cell');
   //   console.log(parentElement);
   //   parentElement.removeChild(parent.firstChild);
