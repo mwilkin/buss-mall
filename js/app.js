@@ -1,4 +1,11 @@
 'use strict';
+
+// 
+// 
+// 
+
+
+
 // ------
 // 
 // Global variables
@@ -12,7 +19,7 @@ var totalVotesOnPage = 0;
 var previousIndexProducts = [];
 // var currentProducts = [];
 var MINIMUM_NUMBER = 0;
-var MAXIMUM_NUMBER = 6;  //Change back to 20 when it is all working
+var MAXIMUM_NUMBER = 20;
 
 var productArray = [
   ['Bag', 'bag', './img/bag.jpg'],
@@ -57,14 +64,12 @@ Product.prototype.calculatePercent = function (){
 };
 
 
-// function newProductArrayGeneration(){
-//   Add the for loop just below and stick the function call some place smart
-// }
-
-for(var i = 0; i < productArray.length; i++){
-  new Product(productArray[i][0], productArray[i][1], productArray[i][2]);
-  // put this into the funtion above later
+function newProductArrayGeneration(){
+  for(var i = 0; i < productArray.length; i++){
+    new Product(productArray[i][0], productArray[i][1], productArray[i][2]);
+  }
 }
+
 
 Product.prototype.render = function(parentId){
   
@@ -80,7 +85,6 @@ Product.prototype.render = function(parentId){
 };
 
 function randomNumberGenerator(){
-
 // add global variables for make less brittle
 
   return Math.floor(Math.random() * 20);
@@ -89,14 +93,12 @@ function randomNumberGenerator(){
 function randomImageGenerator(){
   var currentProducts =[];
 
-  for (i = 0; i < 3; i++) {
+  for (var i = 0; i < 3; i++) {
     var randomIndex = randomNumberGenerator(MINIMUM_NUMBER, productArray.length);
     while(currentProducts.includes(randomIndex)){
       randomIndex = randomNumberGenerator(MINIMUM_NUMBER, productArray.length);
-      // console.log('random Index', randomIndex);
     }
     currentProducts.push(randomIndex);
-    // console.log(currentProducts);
   }
   previousIndexProducts = currentProducts;
 
@@ -104,51 +106,29 @@ function randomImageGenerator(){
     previousIndexProducts.shift();
     previousIndexProducts.shift();
     previousIndexProducts.shift();
-
-    // console.log(previousIndexProducts);
   }
 
 }
 
-function addCurrentSetOfImages(){ 
-  console.log(previousIndexProducts);
-  for(i = 0; i < previousIndexProducts.length; i++){
+function addCurrentSetOfImages(){
+  for(var i = 0; i < previousIndexProducts.length; i++){
     PRODUCTS[productArray[previousIndexProducts[i]][1]].render(`item_${i+1}`);
-    // debugger;
   }
-
-  // event.trigger.id = this.HTMLid;
-  // event.trigger.src = this.imgFilePath;
 }
 
 // Remove images from the DOM 
 function removeImages() {
-  for(var i=0; i<3 ;i++){
+  for(var i = 0; i < 3 ; i++){
     var parent = document.getElementById(`item_${i+1}`);
     while(parent.firstChild){
       parent.removeChild(parent.firstChild);
     }
   }
-
-  // var parent = document.getElementById('item_1');
-  // while(parent.firstChild){
-  //   parent.removeChild(parent.firstChild);
-  // }
-  // parent = document.getElementById('item_2');
-  // while(parent.firstChild){
-  //   parent.removeChild(parent.firstChild);
-  // }
-  // parent = document.getElementById('item_3');
-  // while(parent.firstChild){
-  //   parent.removeChild(parent.firstChild);
-  // }
-  //   var parentElement = document.getElementsByClassName('product-cell');
-  //   console.log(parentElement);
-  //   parentElement.removeChild(parent.firstChild);
-  // }
-
 }
 
+function removeListener(){
+  container.removeEventListener('click', handleClick);
+}
 
 // ------------------------
 //
@@ -170,34 +150,31 @@ function displayResults(){
 
   for(var i = 0; i < productArray.length; i++){
     var li = document.createElement('li');
-    li.textContent = PRODUCTS[productArray[i][1]].totalVotes + ' votes for ' + PRODUCTS[productArray[i][1]].name;
+    li.textContent = `${PRODUCTS[productArray[i][1]].totalVotes} votes for ${PRODUCTS[productArray[i][1]].name}`;
     ol.appendChild(li);
   }
 }
 
-function removeListener(){
-  container.removeEventListener('click', handleClick);
-}
-
 // ------------------
-// 
+//
 // Event Handler
-// 
+//
 // ------------------
-
 
 function handleClick(event) {
   if(event.target.className === 'product'){
     totalVotesOnPage++;
     PRODUCTS[event.target.id].totalVotes++;
-
+    console.log(PRODUCTS[event.target.id]);
+    // debugger;
     if(totalVotesOnPage === MAXIMUM_NUMBER){
       removeListener();
+      totalVotesOnPage = 0;
       displayResults();
       chartRender();
       return;
     }
-
+    // newProductArrayGeneration();
     randomImageGenerator();
     removeImages();
     addCurrentSetOfImages();
@@ -205,6 +182,11 @@ function handleClick(event) {
 }
 
 container.addEventListener('click', handleClick);
+
+// Add Single entry point
+// add onloadEvent 
+newProductArrayGeneration();
+
 
 // -------------------------
 // 
@@ -267,8 +249,6 @@ function chartRender(){
   var barChart = new Chart(ctx, barChartConfig);
 
 }
-
-// chartRender();
 
 // -------------
 //
