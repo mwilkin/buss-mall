@@ -90,33 +90,28 @@ function randomImageGenerator(){
 
   for (i = 0; i < 3; i++) {
     var randomIndex = randomNumberGenerator(MINIMUM_NUMBER, productArray.length);
-
-    // add some logic to check current images vs previous
-    // currentProducts =
-
     while(currentProducts.includes(randomIndex)){
       randomIndex = randomNumberGenerator(MINIMUM_NUMBER, productArray.length);
       console.log('random Index', randomIndex);
     }
     currentProducts.push(randomIndex);
+    // console.log(currentProducts);
   }
   previousIndexProducts = currentProducts;
-  console.log(previousIndexProducts);
 
   if(previousIndexProducts.length === 6){
     previousIndexProducts.shift();
     previousIndexProducts.shift();
     previousIndexProducts.shift();
 
-    console.log(previousIndexProducts);
+    // console.log(previousIndexProducts);
   }
 
 }
 
-
-function addCurrentSetOfImages(){  
-  for(i = 0; i < previousIndexProducts; i++){
-    PRODUCTS[productArray[previousIndexProducts[i]][1].render(`item_${i+1}`)];
+function addCurrentSetOfImages(){ 
+  for(i = 0; i < currentProducts.length; i++){
+    PRODUCTS[productArray[currentProducts[i]][1]].render(`item_${i+1}`);
   }
 
   // event.trigger.id = this.HTMLid;
