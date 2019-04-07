@@ -11,7 +11,7 @@ var totalVotesOnPage = 0;
 var previousProducts = [];
 var currentProducts = [];
 var MINIMUM_NUMBER = 0;
-var MAXIMUM_NUMBER = 25;
+var MAXIMUM_NUMBER = 5;
 
 var productArray = [
   ['Bag', 'bag', './img/bag.jpg'],
@@ -95,12 +95,16 @@ function randomGenerator(min, max){
 
 
 function addCurrentSetOfImages(event){  
+  // add them to an array?
+
   // event.trigger.id = this.HTMLid;
   // event.trigger.src = this.imgFilePath;
   // console.log('event.trigger.id');
+
 }
 
 // Displaying to the DOM
+
 function displayResults(){
   var resultListCellElement = document.getElementById('resultListCell');
   var h3 = document.createElement(h3);
@@ -113,10 +117,14 @@ function displayResults(){
 
   for(var i = 0; i < productArray.length; i++){
     var li = document.createElement('li');
-    li.textContent = i+1;
-    // li.textContent = PRODUCTS[i];
+
+    
+    li.textContent = PRODUCTS[productArray[i][1]].name;
     ol.appendChild(li);
   }
+  // console.log(productArray[2][0].totalVotes);
+  // console.log(productArray[2][1]);
+  // console.log(productArray[2][2]);
 }
 
 function removeListener(){
@@ -142,10 +150,19 @@ function handleClick(event) {
 
 container.addEventListener('click', handleClick);
 
-
+// Test Data 
 var boots = new Product('Boots', 'boots', './img/boots.jpg');
 boots.render('item_1');
 var bag = new Product('Bag', 'bag', './img/bag.jpg');
 bag.render('item_2');
 var breakfast = new Product('Breakfast', 'breakfast', './img/breakfast.jpg');
 breakfast.render('item_3');
+
+// Bar Chart code goes here
+
+// var  resultsBarChart = document.getElementById('barChart');
+
+// function chartRender(){
+//      Shows the bar chart on the page
+// }
+
