@@ -34,14 +34,13 @@ var productArray = [
   ['Usb', 'usb', './img/usb.jpg'],
   ['Water-can', 'water-can', './img/water-can.jpg'],
   ['Wine-glass', 'wine-glass', './img/wine-glass.jpg']
-
 ];
 
-// ------
+// -----------------
 // 
 // Constructor function
 // 
-// ------
+// -----------------
 
 function Product(name, HTMLid, imgFilePath){
   this.name = name;
@@ -52,15 +51,19 @@ function Product(name, HTMLid, imgFilePath){
   PRODUCTS[this.HTMLid] = this;
 }
 
-Product.prototype.getPercentClicked = function (){
+Product.prototype.calculatePercent = function (){
   return this.totalVotes / this.totalViews;
 };
 
+
+// function newProductArrayGeneration(){
+//   Add the for loop just below and stick the function call some place smart
+// }
+
 for(var i = 0; i < productArray.length; i++){
   new Product(productArray[i][0], productArray[i][1], productArray[i][2]);
+  // put this into the funtion above later
 }
-
-// Render to the DOM
 
 Product.prototype.render = function(parentId){
   
@@ -74,13 +77,16 @@ Product.prototype.render = function(parentId){
   parent.appendChild(img);
 };
 
-function randomGenerator(min, max){
+function randomGenerator(productArray){
 // ToDo : Randomly select 3 new images
 // keep track of total views for each product
 
-// return Math.floor(Math.random((24-0)+0)); // something like this
-// console.log()
-// }
+  var randomNumber = Math.floor(Math.random() * 20);
+
+  console.log(productArray);
+  // console.log(productArray.length);
+  console.log(randomNumber);
+}
 
 // for (i = 0; i < 3; i++) {
 //   var randomIndex = randomGenerator(0, productArray.length);
@@ -91,7 +97,7 @@ function randomGenerator(min, max){
 // }
 // while((i = previousProducts.shift()) !== 3) {
 //  console.log(previousProducts);
-}
+// }
 
 
 function addCurrentSetOfImages(event){  
@@ -103,7 +109,11 @@ function addCurrentSetOfImages(event){
 
 }
 
+// ------------------------
+// 
 // Displaying to the DOM
+// 
+// -------------------------
 
 function displayResults(){
   var resultListCellElement = document.getElementById('resultListCell');
@@ -118,20 +128,24 @@ function displayResults(){
   for(var i = 0; i < productArray.length; i++){
     var li = document.createElement('li');
 
-    
-    li.textContent = PRODUCTS[productArray[i][1]].name;
+    // Need to grab the total votes for each project
+    // they are undefined at this point
+
+    li.textContent = 'votes for ' + PRODUCTS[productArray[i][1]].name;
     ol.appendChild(li);
   }
-  // console.log(productArray[2][0].totalVotes);
-  // console.log(productArray[2][1]);
-  // console.log(productArray[2][2]);
 }
 
 function removeListener(){
   container.removeEventListener('click', handleClick);
 }
 
+// ------------------
+// 
 // Event Handler
+// 
+// ------------------
+
 
 function handleClick(event) {
   if(event.target.className === 'product'){
@@ -150,7 +164,8 @@ function handleClick(event) {
 
 container.addEventListener('click', handleClick);
 
-// Test Data 
+// Test Display Data 
+
 var boots = new Product('Boots', 'boots', './img/boots.jpg');
 boots.render('item_1');
 var bag = new Product('Bag', 'bag', './img/bag.jpg');
@@ -158,7 +173,11 @@ bag.render('item_2');
 var breakfast = new Product('Breakfast', 'breakfast', './img/breakfast.jpg');
 breakfast.render('item_3');
 
+// -------------------------
+// 
 // Bar Chart code goes here
+// 
+// --------------------------
 
 // var  resultsBarChart = document.getElementById('barChart');
 
