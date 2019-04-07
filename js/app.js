@@ -95,9 +95,9 @@ function randomGenerator(min, max){
 
 
 function addCurrentSetOfImages(event){  
-  event.trigger.id = this.HTMLid;
-  event.trigger.src = this.imgFilePath;
-  console.log('event.trigger.id');
+  // event.trigger.id = this.HTMLid;
+  // event.trigger.src = this.imgFilePath;
+  // console.log('event.trigger.id');
 }
 
 // Displaying to the DOM
@@ -113,7 +113,8 @@ function displayResults(){
 
   for(var i = 0; i < productArray.length; i++){
     var li = document.createElement('li');
-    li.textContent = PRODUCTS[i];
+    li.textContent = i+1;
+    // li.textContent = PRODUCTS[i];
     ol.appendChild(li);
   }
 }
