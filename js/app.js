@@ -86,6 +86,7 @@ function randomNumberGenerator(){
 }
 
 function randomImageGenerator(){
+  currentProducts =[];
 
   for (i = 0; i < 3; i++) {
     var randomIndex = randomNumberGenerator(MINIMUM_NUMBER, productArray.length);
@@ -93,11 +94,15 @@ function randomImageGenerator(){
     // add some logic to check current images vs previous
     // currentProducts =
 
-    while(previousIndexProducts.includes(randomIndex)){
+    while(currentProducts.includes(randomIndex)){
       randomIndex = randomNumberGenerator(MINIMUM_NUMBER, productArray.length);
+      console.log('random Index', randomIndex);
     }
-    previousIndexProducts.push(randomIndex);
+    currentProducts.push(randomIndex);
   }
+  previousIndexProducts = currentProducts;
+  console.log(previousIndexProducts);
+
   if(previousIndexProducts.length === 6){
     previousIndexProducts.shift();
     previousIndexProducts.shift();
@@ -108,13 +113,11 @@ function randomImageGenerator(){
 
 }
 
-// for(i = 0; i < previousIndexProducts; i++){
-//   PRODUCTS[productArray[previousIndexProducts[i]][1].render(`item_${i+1}`)];
-// }
 
-function addCurrentSetOfImages(event){  
-  // add them to an array?
-  // keep track of total views for each product
+function addCurrentSetOfImages(){  
+  for(i = 0; i < previousIndexProducts; i++){
+    PRODUCTS[productArray[previousIndexProducts[i]][1].render(`item_${i+1}`)];
+  }
 
   // event.trigger.id = this.HTMLid;
   // event.trigger.src = this.imgFilePath;
@@ -173,7 +176,7 @@ function handleClick(event) {
       return;
     }
     randomImageGenerator();
-    addCurrentSetOfImages(event);
+    addCurrentSetOfImages();
   }
 }
 
