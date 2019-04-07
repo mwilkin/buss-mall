@@ -218,7 +218,6 @@ function chartRender(){
         'rgb(0, 0, 0)',
       ],
       borderWidth: 1,
-
     }],
   };
 
