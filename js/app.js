@@ -10,7 +10,8 @@ var PRODUCTS = {};
 var totalVotesOnPage = 0;
 var previousProducts = [];
 var currentProducts = [];
-
+var MINIMUM_NUMBER = 0;
+var MAXIMUM_NUMBER = 25;
 
 var productArray = [
   ['Bag', 'bag', './img/bag.jpg'],
@@ -94,8 +95,8 @@ function randomGenerator(min, max){
 
 
 function addCurrentSetOfImages(event){  
-  event.trigger.id = 'this.HTMLid';
-  event.trigger.src = 'this.imgFilePath';
+  event.trigger.id = this.HTMLid;
+  event.trigger.src = this.imgFilePath;
   console.log('event.trigger.id');
 }
 
@@ -128,7 +129,7 @@ function handleClick(event) {
     totalVotesOnPage++;
     PRODUCTS[event.target.id].totalVotes++;
 
-    if(totalVotesOnPage === 25){
+    if(totalVotesOnPage === MAXIMUM_NUMBER){
       removeListener();
       displayResults();
       return;
