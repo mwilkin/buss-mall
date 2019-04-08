@@ -57,7 +57,7 @@ function Product(name, HTMLid, imgFilePath){
   this.imgFilePath = imgFilePath;
   this.HTMLid = HTMLid;
   this.totalVotes = this.totalViews = 0;
-  
+
   PRODUCTS[this.HTMLid] = this;
 }
 
@@ -72,9 +72,8 @@ function newProductArrayGeneration(){
   }
 }
 
-
 Product.prototype.render = function(parentId){
-  
+
   var parent = document.getElementById(parentId);
 
   var img = document.createElement('img');
@@ -87,7 +86,6 @@ Product.prototype.render = function(parentId){
 };
 
 function randomNumberGenerator(){
-// add global variables for make less brittle
 
   return Math.floor(Math.random() * MAXIMUM_NUMBER);
 }
@@ -95,13 +93,17 @@ function randomNumberGenerator(){
 function randomImageGenerator(){
   var currentProducts =[];
 
+
+// The Logic is quite working right. 
+
   for (var i = 0; i < 3; i++) {
     var randomIndex = randomNumberGenerator(MINIMUM_NUMBER, productArray.length);
-    while(currentProducts.includes(randomIndex)){
+    while(currentProducts.includes(randomIndex) || currentProducts.includes(previousIndexProducts)){
       randomIndex = randomNumberGenerator(MINIMUM_NUMBER, productArray.length);
     }
     currentProducts.push(randomIndex);
   }
+  
   previousIndexProducts = currentProducts;
 
   if(previousIndexProducts.length === 6){
@@ -142,7 +144,7 @@ function removeListener(){
 function displayResults(){
   var resultListCellElement = document.getElementById('resultListCell');
   var h3 = document.createElement(h3);
-  h3.textContent = 'Most Voted';
+  h3.textContent = 'Most Votes';
   resultListCellElement.appendChild(h3);
 
   var ol = document.createElement('ol');
@@ -167,7 +169,6 @@ function handleClick(event) {
     totalVotesOnPage++;
     PRODUCTS[event.target.id].totalVotes++;
     if(totalVotesOnPage === MAXIMUM_NUMBER){
-      // console.log('I m here');
       removeListener();
       totalVotesOnPage = 0;
       displayResults();
@@ -177,16 +178,21 @@ function handleClick(event) {
     // newProductArrayGeneration();
     randomImageGenerator();
     removeImages();
-    addCurrentSetOfImages();
+    addCurrentSetOfImages(event);
   }
 }
 
-container.addEventListener('click', handleClick);
 
 // Add Single entry point
-// add onloadEvent 
-newProductArrayGeneration();
+// Trying to initiate this function after the page fully loads
+// window.onlload = (event) => {
+//   newProductArrayGeneration();
+//
+// };
 
+
+newProductArrayGeneration();
+container.addEventListener('click', handleClick);
 
 // -------------------------
 // 
@@ -202,9 +208,7 @@ function chartRender(){
 
   for(var i = 0; i < productArray.length; i++){
     CHART_TO_VOTES.push(PRODUCTS[productArray[i][1]].totalVotes);
-    console.log(CHART_TO_VOTES);
     CHART_NAMES.push(PRODUCTS[productArray[i][1]].name);
-    console.log(CHART_NAMES);
   }
 
   var data = {
