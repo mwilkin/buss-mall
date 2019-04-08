@@ -1,8 +1,12 @@
 'use strict';
 
+//----------
+// 1. fix logic so images are truly random
+// 2. establish persistence [local_storage]
+// 3. create a single point on entry
+// 4. 
 // 
-// 
-// 
+//------------ 
 
 
 
@@ -94,16 +98,17 @@ function randomImageGenerator(){
   var currentProducts =[];
 
 
-// The Logic is quite working right. 
+  // The Logic is quite working right.
 
   for (var i = 0; i < 3; i++) {
     var randomIndex = randomNumberGenerator(MINIMUM_NUMBER, productArray.length);
-    while(currentProducts.includes(randomIndex) || currentProducts.includes(previousIndexProducts)){
+    if(currentProducts.includes(randomIndex)) {
       randomIndex = randomNumberGenerator(MINIMUM_NUMBER, productArray.length);
-    }
-    currentProducts.push(randomIndex);
+    } else if (currentProducts.includes(previousIndexProducts)){
+      randomIndex = randomNumberGenerator(MINIMUM_NUMBER, productArray.length);
+    } else currentProducts.push(randomIndex);
   }
-  
+
   previousIndexProducts = currentProducts;
 
   if(previousIndexProducts.length === 6){
@@ -195,9 +200,9 @@ newProductArrayGeneration();
 container.addEventListener('click', handleClick);
 
 // -------------------------
-// 
+//
 // Bar Chart code goes here
-// 
+//
 // --------------------------
 
 var  resultsBarChart = document.getElementById('barChart');
@@ -214,7 +219,7 @@ function chartRender(){
   var data = {
     labels: CHART_NAMES,
     datasets: [{
-      
+
       label: 'Number of votes',
       data: CHART_TO_VOTES,
       backgroundColor:[
