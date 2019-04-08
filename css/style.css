@@ -15,6 +15,8 @@
   grid-column-start: 1;
   grid-column-end: last;
   text-align: center;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 60px;
 }
 
 #item_1 {
@@ -35,12 +37,15 @@
 #resultListCell {
   grid-column-start: 1;
   grid-column-end: 6;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 30px;
+  padding: 35px;
+  text-align: justify;
 }
 
 #barChart {
   grid-column-start: 7;
   grid-column-end: last;
-
 }
 
 .product { 
@@ -55,8 +60,13 @@
 }
 
 #resultsList {
-  margin-left: 35px;
   list-style-type: decimal;
-  text-align: left;
+  text-align: center;
+  font-family: 'PT Sans Narrow', sans-serif;
 }
 
+h3 {
+  font-size: 45px;
+  text-align: center;
+  padding: 15px;
+}
